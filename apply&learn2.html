@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply & Learn</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8; /* Light background */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1a5293; /* Darker blue - refined */
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        .container {
+            max-width: 1100px; /* Slightly wider container */
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+        }
+        .course-category {
+            margin-bottom: 40px;
+        }
+        .course-category h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #1a5293; /* Darker blue for headings */
+        }
+        .info-card {
+            border: 1px solid #e0e0e0; /* Lighter border */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            background-color: #ffffff; /* White cards */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Increased shadow on hover */
+        }
+        .info-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #2c3e50; /* Dark gray for titles */
+        }
+        .info-card p {
+            margin-bottom: 15px;
+            color: #555555; /* Medium gray for descriptions */
+            line-height: 1.6; /* Improved line height for readability */
+        }
+        .info-card .btn {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            font-weight: 500;
+            transition: background-color 0.3s ease-in-out; /* Smooth transition */
+        }
+        .info-card .btn:hover {
+            background-color: #217dbb; /* Darker blue on hover */
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .info-card {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Location Styles */
+        .location-dropdown {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .location-dropdown label {
+            margin-right: 15px;
+            font-size: 1.1rem;
+            color: #34495e; /* Darker label color */
+        }
+        .location-dropdown select {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #b4c6e7; /* Light blue border */
+            font-size: 1rem;
+            color: #34495e;
+            transition: border-color 0.2s ease-in-out; /* Smooth transition */
+            width: 250px; /* Increased width of select dropdown */
+        }
+        .location-dropdown select:focus {
+            outline: none;
+            border-color: #3498db; /* Highlight border on focus */
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); /* Add a subtle shadow */
+        }
+        #location-error {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* City Image Styles */
+        .city-image-wrapper {
+            width: 100%;
+            height: 200px; /* Fixed height for city images */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative; /* For absolute positioning of overlay */
+        }
+        .city-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the entire container */
+            transition: transform 0.3s ease-in-out; /* Smooth transition */
+        }
+        .city-image-wrapper:hover img {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+        .city-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* Gradient overlay */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease-in-out; /* Smooth transition */
+        }
+        .city-image-wrapper:hover .city-image-overlay {
+            opacity: 1; /* Show overlay on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apply & Learn</h1>
+        <p>Enhance your skills and explore new opportunities in NCR</p>
+    </header>
+
+    <div class="location-dropdown">
+        <label for="location-select">Select Your City: </label>
+        <select id="location-select">
+            <option value="">Select City</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Gurugram">Gurugram</option>
+            <option value="Noida">Noida</option>
+            <option value="Faridabad">Faridabad</option>
+            <option value="Ghaziabad">Ghaziabad</option>
+        </select>
+        <p id="location-error"></p>
+    </div>
+
+    <div class="container" id="info-container">
+        </div>
+
+    <script>
+        const data = {
+            "Delhi": {
+                cityImage: "https://placehold.co/800x400/E07A5F/fff?text=Delhi&font=Montserrat", // Placeholder Image
+                jobs: [
+                    { title: "Delhi - Licensed Plumber", description: "Looking for a licensed plumber for installations and repairs.", link: "#" },
+                    { title: "Delhi - Delivery Driver (Light Vehicle)", description: "Urgently required: reliable delivery driver with a valid driver's license.", link: "#" },
+                    { title: "Delhi - Residential Painter", description: "Hiring experienced painters for interior and exterior residential projects.", link: "#" },
+                    { title: "Delhi - HVAC Technician", description: "Looking for a certified HVAC technician for installation and servicing of systems.", link: "#" },
+                ],
+                courses: [
+                    { title: "Delhi - Banking and Finance", description: "Understand banking operations, financial markets, and institutions in Delhi.", link: "#" },
+                    { title: "Delhi - Financial Planning", description: "Master the art of budgeting, saving, and financial planning in Delhi.", link: "#" },
+                    { title: "Delhi - Electrical Basics", description: "Learn the fundamentals of electrical systems and installations in Delhi.", link: "#" },
+                ],
+            },
+            "Gurugram": {
+                cityImage: "https://placehold.co/800x400/F2CC8F/fff?text=Gurugram&font=Montserrat",  // Placeholder Image
+                jobs: [
+                    { title: "Gurugram - Experienced Carpenter", description: "Seeking a skilled carpenter for residential projects in Gurugram.", link: "#" },
+                    { title: "Gurugram - Construction Laborer", description: "Seeking hardworking individuals for general construction labor tasks in Gurugram.", link: "#" },
+                    { title: "Gurugram - Automotive Mechanic", description: "Looking for a skilled automotive mechanic in Gurugram.", link: "#" },
+                    { title: "Gurugram - Landscaping Technician", description: "Seeking a detail-oriented landscaping technician for garden maintenance in Gurugram.", link: "#" },
+                ],
+                courses: [
+                    { title: "Gurugram - Investment Basics", description: "Learn the fundamentals of investing in Gurugram.", link: "#" },
+                    { title: "Gurugram - Financial Planning", description: "Master the art of budgeting, saving, and financial planning in Gurugram.", link: "#" },
+                    { title: "Gurugram - Plumbing Essentials", description: "Get hands-on training in plumbing techniques and repairs in Gurugram.", link: "#" },
+                ],
+            },
+            "Noida": {
+                cityImage: "https://placehold.co/800x400/81B29A/fff?text=Noida&font=Montserrat", // Placeholder Image
+                jobs: [
+                    { title: "Noida - Site Supervisor", description: "Looking for a site supervisor with experience in managing construction projects.", link: "#" },
+                    { title: "Noida - Civil Engineer", description: "Hiring a civil engineer for designing and overseeing infrastructure projects.", link: "#" },
+                    { title: "Noida - Electrician", description: "Looking for a qualified electrician for installation and maintenance work.", link: "#" },
+                ],
+                courses: [
+                    { title: "Noida - Digital Marketing Basics", description: "Learn the basics of digital marketing in Noida.", link: "#" },
+                    { title: "Noida - Web Development Fundamentals", description: "Learn web development fundamentals in Noida.", link: "#" },
+                ],
+            },
+            "Faridabad": {
+                cityImage: "https://placehold.co/800x400/F48C06/fff?text=Faridabad&font=Montserrat", // Placeholder Image
+                jobs: [
+                    { title: "Faridabad - Machine Operator", description: "Hiring machine operators for our manufacturing unit.", link: "#" },
+                    { title: "Faridabad - Quality Control Inspector", description: "Seeking a quality control inspector to ensure product standards.", link: "#" },
+                    { title: "Faridabad - Warehouse Associate", description: "Looking for a warehouse associate to manage inventory and shipments.", link: "#" },
+                ],
+                courses: [
+                    { title: "Faridabad - Basic Accounting", description: "Learn basic accounting principles in Faridabad.", link: "#" },
+                    { title: "Faridabad - Retail Management", description: "Learn retail management skills in Faridabad. ", link: "#" },
+                ],
+            },
+            "Ghaziabad": {
+                cityImage: "https://placehold.co/800x400/A7F9A7/fff?text=Ghaziabad&font=Montserrat", // Placeholder Image
+                jobs: [
+                    { title: "Ghaziabad - Structural Engineer", description: "Hiring a structural engineer for designing and analyzing structures.", link: "#" },
+                    { title: "Ghaziabad - Architect", description: "Looking for an architect to design buildings and spaces.", link: "#" },
+                    { title: "Ghaziabad - Urban Planner", description: "Seeking an urban planner for city development projects.", link: "#" },
+                ],
+                courses: [
+                    { title: "Ghaziabad - Interior Design Basics", description: "Learn interior design basics in Ghaziabad.", link: "#" },
+                    { title: "Ghaziabad - Project Management", description: "Learn project management skills in Ghaziabad.", link: "#" },
+                ],
+            },
+            // Add more NCR cities and data as needed
+        };
+
+        const locationSelect = document.getElementById("location-select");
+        const infoContainer = document.getElementById("info-container");
+        const locationError = document.getElementById("location-error");
+
+        locationSelect.addEventListener("change", function () {
+            const selectedLocation = this.value;
+            if (selectedLocation) {
+                loadContent(selectedLocation);
+                locationError.textContent = "";
+            } else {
+                infoContainer.innerHTML = "";
+                locationError.textContent = "Please select a city.";
+            }
+        });
+
+        function loadContent(location) {
+            const locationData = data[location];
+            let html = "";
+
+            if (locationData) {
+                html += `
+                    <div class="course-category">
+                        <h2>${location} - Jobs</h2>
+                        <div class="row">
+                            <div class="col-12 city-image-wrapper">
+                                <img src="${locationData.cityImage}" alt="${location} City">
+                                <div class="city-image-overlay">${location}</div>
+                            </div>
+                `;
+                if (locationData.jobs && locationData.jobs.length > 0) {
+                    locationData.jobs.forEach(item => {
+                        html += `
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="info-card">
+                                        <h3>${item.title}</h3>
+                                        <p>${item.description}</p>
+                                        <a href="${item.link}" class="btn">Apply Now</a>
+                                    </div>
+                                </div>
+                        `;
+                    });
+                } else {
+                    html += `<div class="col-12"><div class="alert alert-warning">No jobs available in ${location}.</div></div>`;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                    <div class="course-category">
+                        <h2>${location} - Courses</h2>
+                        <div class="row">
+                `;
+                if (locationData.courses && locationData.courses.length > 0) {
+                    locationData.courses.forEach(item => {
+                        html += `
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="info-card">
+                                        <h3>${item.title}</h3>
+                                        <p>${item.description}</p>
+                                        <a href="${item.link}" class="btn">Enroll Now</a>
+                                    </div>
+                                </div>
+                        `;
+                    });
+                } else {
+                    html += `<div class="col-12"><div class="alert alert-warning">No courses available in ${location}.</div></div>`;
+                }
+                html += `
+                        </div>
+                    </div>
+                `;
+            } else {
+                html = `<div class="alert alert-warning">No information available for the selected city.</div>`;
+            }
+
+            infoContainer.innerHTML = html;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
