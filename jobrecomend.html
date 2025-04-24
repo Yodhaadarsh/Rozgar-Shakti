@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .recommendation-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 900px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .job-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .job-icon {
+            font-size: 2em;
+            color: #007bff;
+        }
+
+        .job-details {
+            flex-grow: 1;
+        }
+
+        .job-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .job-location {
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .apply-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .apply-button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Icons (you might need to include a font library like Font Awesome for real icons) */
+        .icon-carpenter::before { content: "🔨"; }
+        .icon-plumber::before { content: "🔧"; }
+        .icon-electrician::before { content: "💡"; }
+        .icon-driver::before { content: "🚗"; }
+        .icon-construction::before { content: "🏗️"; }
+        .icon-mechanic::before { content: "⚙️"; }
+        .icon-painter::before { content: "🎨"; }
+        .icon-landscaper::before { content: "🌳"; }
+        .icon-hvac::before { content: "🌡️"; }
+        .icon-welder::before { content: "🔥"; }
+    </style>
+</head>
+<body>
+    <div class="recommendation-container">
+        <h1>Recommended Jobs For You</h1>
+
+        <div class="job-card">
+            <span class="job-icon icon-carpenter"></span>
+            <div class="job-details">
+                <h3 class="job-title">Experienced Carpenter</h3>
+                <p class="job-location">Greater Noida, Uttar Pradesh</p>
+                <p>Seeking a skilled carpenter for residential projects. Must have own tools and transportation.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-plumber"></span>
+            <div class="job-details">
+                <h3 class="job-title">Licensed Plumber</h3>
+                <p class="job-location">Delhi NCR</p>
+                <p>Looking for a licensed plumber for installations and repairs. Service vehicle provided.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-electrician"></span>
+            <div class="job-details">
+                <h3 class="job-title">Industrial Electrician</h3>
+                <p class="job-location">Bawana Industrial Area, Delhi</p>
+                <p>Hiring an experienced industrial electrician for maintenance and new installations.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-driver"></span>
+            <div class="job-details">
+                <h3 class="job-title">Delivery Driver (Light Vehicle)</h3>
+                <p class="job-location">Ghaziabad, Uttar Pradesh</p>
+                <p>Urgently required: reliable delivery driver with a valid driver's license.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-construction"></span>
+            <div class="job-details">
+                <h3 class="job-title">Construction Laborer</h3>
+                <p class="job-location">Noida, Uttar Pradesh</p>
+                <p>Seeking hardworking individuals for general construction labor tasks.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-mechanic"></span>
+            <div class="job-details">
+                <h3 class="job-title">Automotive Mechanic</h3>
+                <p class="job-location">Local Workshop, Greater Noida</p>
+                <p>Looking for a skilled automotive mechanic with experience in repairs and maintenance.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-painter"></span>
+            <div class="job-details">
+                <h3 class="job-title">Residential Painter</h3>
+                <p class="job-location">Various locations in NCR</p>
+                <p>Hiring experienced painters for interior and exterior residential projects.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-landscaper"></span>
+            <div class="job-details">
+                <h3 class="job-title">Landscaping Technician</h3>
+                <p class="job-location">Farmhouse Area, Greater Noida</p>
+                <p>Seeking a detail-oriented landscaping technician for garden maintenance and design.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-hvac"></span>
+            <div class="job-details">
+                <h3 class="job-title">HVAC Technician</h3>
+                <p class="job-location">Commercial Buildings, Delhi</p>
+                <p>Looking for a certified HVAC technician for installation and servicing of systems.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <span class="job-icon icon-welder"></span>
+            <div class="job-details">
+                <h3 class="job-title">Experienced Welder</h3>
+                <p class="job-location">Industrial Site, Near Greater Noida</p>
+                <p>Hiring a skilled welder proficient in various welding techniques.</p>
+            </div>
+            <a href="#" class="apply-button">Apply Now</a>
+        </div>
+
+        </div>
+</body>
+</html>
