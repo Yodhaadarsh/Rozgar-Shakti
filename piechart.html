@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earning and Saving Pie Charts</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Earning Distribution</h2>
+            <canvas id="earningPieChart" width="400" height="400"></canvas>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Saving Distribution</h2>
+            <canvas id="savingPieChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const earningData = {
+            labels: ['Salary', 'Business Income', 'Investments', 'Other'],
+            datasets: [{
+                label: 'Earning',
+                data: [60, 20, 15, 5], // Example data: percentages of total earning
+                backgroundColor: [
+                    '#6366f1', // Indigo
+                    '#f59e0b', // Amber
+                    '#10b981', // Emerald
+                    '#e53e3e'  // Red
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const savingData = {
+            labels: ['Health', 'Personal', 'Children', 'Other'],
+            datasets: [{
+                label: 'Saving',
+                data: [25, 30, 40, 5], // Example data: percentages of total saving
+                backgroundColor: [
+                    '#3b82f6', // Blue
+                    '#8b5cf6', // Violet
+                    '#22c55e', // Green
+                    '#ef4444'  // Red
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const pieChartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'top', // 'top', 'bottom', 'left', 'right', 'chartArea'
+                    align: 'center',  // 'start', 'center', 'end'
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: 'Inter', // Set font family
+                        },
+                        color: '#4b5563', // Text color
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(75,85,99,1)', // Tailwind gray-600
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: 'rgba(0,0,0,0)',
+                    borderWidth: 0,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        }
+                    },
+                    font: {
+                        family: 'Inter', // Set font family for tooltip
+                        size: 14
+                    }
+                }
+            }
+        };
+
+        const earningPieChartCtx = document.getElementById('earningPieChart').getContext('2d');
+        const savingPieChartCtx = document.getElementById('savingPieChart').getContext('2d');
+
+        new Chart(earningPieChartCtx, {
+            type: 'pie',
+            data: earningData,
+            options: pieChartOptions
+        });
+
+        new Chart(savingPieChartCtx, {
+            type: 'pie',
+            data: savingData,
+            options: pieChartOptions
+        });
+    </script>
+</body>
+</html>
