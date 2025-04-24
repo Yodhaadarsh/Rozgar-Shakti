@@ -1,0 +1,70 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+
+export default function FinGood() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-blue-600 text-white p-6 text-center text-2xl font-bold">
+        FinGood - Invest in Change
+      </header>
+      
+      {/* Authentication Section */}
+      <section className="p-6 bg-white rounded-lg shadow-lg mx-6 my-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">Welcome to FinGood</h2>
+        <p className="mb-4">Sign up or log in to start investing and tracking your progress.</p>
+        <div className="flex justify-center gap-4">
+          <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg">
+            Sign Up
+          </Button>
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg">
+            Log In
+          </Button>
+        </div>
+      </section>
+      
+      {/* Hero Section */}
+      <motion.section 
+        className="text-center py-16 px-6"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h1 className="text-4xl font-bold mb-4">Empowering Financial Inclusion</h1>
+        <p className="text-lg mb-6">Start investing with as little as ₹10 and make a real impact.</p>
+        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg">
+          Get Started
+        </Button>
+      </motion.section>
+      
+      {/* Social Media Sharing */}
+      <section className="p-6 bg-white rounded-lg shadow-lg mx-6 my-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">Share Your Impact</h2>
+        <p className="mb-4">Let others know about your investments and inspire change.</p>
+        <div className="flex justify-center gap-4">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">Share on Facebook</Button>
+          <Button className="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-lg">Tweet on Twitter</Button>
+          <Button className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg">Share on Instagram</Button>
+        </div>
+      </section>
+      
+      {/* Admin Dashboard */}
+      <section className="p-6 bg-gray-200 rounded-lg shadow-lg mx-6 my-8">
+        <h2 className="text-2xl font-bold mb-4">Admin Dashboard</h2>
+        <p className="mb-4">Manage users, monitor investments, and track platform growth.</p>
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <p><strong>Total Users:</strong> 5,000</p>
+          <p><strong>Active Investments:</strong> ₹50,00,000</p>
+          <p><strong>Top Performing Category:</strong> Renewable Energy</p>
+          <Button className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg">Go to Admin Panel</Button>
+        </div>
+      </section>
+      
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white text-center p-4 mt-8">
+        © 2025 FinGood. All Rights Reserved.
+      </footer>
+    </div>
+  );
+}
